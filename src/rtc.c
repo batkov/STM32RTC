@@ -992,6 +992,34 @@ void RTC_StoreDate(void)
 }
 #endif
 
+#if defined(RTC_WAKEUP_SUPPORT)
+void RTC_WAKEUP_Enable() {
+  LL_RTC_DisableWriteProtection(RtcHandle.Instance);
+  LL_RTC_WAKEUP_Enable(RtcHandle.Instance);
+}
+
+void RTC_WAKEUP_Disable() {
+  LL_RTC_WAKEUP_Disable(RtcHandle.Instance);
+}
+
+uint32_t RTC_WAKEUP_GetClock() {
+  return LL_RTC_WAKEUP_GetClock(RtcHandle.Instance);
+}
+
+void RTC_WAKEUP_SetClock(uint32_t wakeupClock) {
+  LL_RTC_WAKEUP_SetClock(RtcHandle.Instance, wakeupClock);
+}
+
+uint32_t RTC_WAKEUP_GetAutoReload() {
+  return LL_RTC_WAKEUP_GetAutoReload(RtcHandle.Instance);
+}
+
+void RTC_WAKEUP_SetAutoReload(uint32_t value) {
+  LL_RTC_DisableWriteProtection(RtcHandle.Instance);
+  LL_RTC_WAKEUP_SetAutoReload(RtcHandle.Instance, value);
+}
+#endif
+
 #ifdef __cplusplus
 }
 #endif

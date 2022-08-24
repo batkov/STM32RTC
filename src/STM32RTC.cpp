@@ -1034,3 +1034,30 @@ void STM32RTC::syncAlarmTime(void)
       break;
   }
 }
+#if defined(RTC_WAKEUP_SUPPORT)
+/* WakeUp functions */
+
+void STM32RTC::wakeUpEnable(void) {
+  RTC_WAKEUP_Enable();
+}
+
+void STM32RTC::wakeUpDisable(void) {
+  RTC_WAKEUP_Disable();
+}
+
+uint32_t STM32RTC::wakeUpGetClock(void) {
+  return RTC_WAKEUP_GetClock();
+}
+
+void STM32RTC::wakeUpSetClock(uint32_t wakeupClock) {
+  RTC_WAKEUP_SetClock(wakeupClock);
+}
+
+uint32_t STM32RTC::wakeUpGetAutoReload(void) {
+  return RTC_WAKEUP_GetAutoReload();
+}
+
+void STM32RTC::wakeUpSetAutoReload(uint32_t value) {
+  RTC_WAKEUP_SetAutoReload(value);
+}
+#endif

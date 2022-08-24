@@ -221,6 +221,16 @@ class STM32RTC {
 #endif
     }
 
+#if defined(RTC_WAKEUP_SUPPORT)
+    /* WakeUp functions */
+    void wakeUpEnable();
+    void wakeUpDisable();
+    uint32_t wakeUpGetClock();
+    void wakeUpSetClock(uint32_t wakeupClock);
+    uint32_t wakeUpGetAutoReload();
+    void wakeUpSetAutoReload(uint32_t value);
+#endif
+
     friend class STM32LowPower;
 
   private:

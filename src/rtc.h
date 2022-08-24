@@ -201,6 +201,8 @@ bool v2_RTC_IsAlarmSet(uint32_t alarmType);
 void v2_RTC_GetAlarm(uint32_t alarmType, uint8_t *day, uint8_t *hours, uint8_t *minutes, uint8_t *seconds, uint32_t *subSeconds, hourAM_PM_t *period, uint8_t *mask);
 void v2_attachAlarmCallback(uint32_t alarmType, voidCallbackPtr func, void *data);
 void v2_detachAlarmCallback(uint32_t alarmType);
+
+
 #ifdef ONESECOND_IRQn
 void attachSecondsIrqCallback(voidCallbackPtr func);
 void detachSecondsIrqCallback(void);
@@ -208,6 +210,15 @@ void detachSecondsIrqCallback(void);
 
 #if defined(STM32F1xx)
 void RTC_StoreDate(void);
+#endif
+
+#if defined(RTC_WAKEUP_SUPPORT)
+void RTC_WAKEUP_Enable();
+void RTC_WAKEUP_Disable();
+uint32_t RTC_WAKEUP_GetClock();
+void RTC_WAKEUP_SetClock(uint32_t wakeupClock);
+uint32_t RTC_WAKEUP_GetAutoReload();
+void RTC_WAKEUP_SetAutoReload(uint32_t value);
 #endif
 
 #ifdef __cplusplus
